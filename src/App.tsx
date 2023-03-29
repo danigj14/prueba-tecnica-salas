@@ -1,17 +1,10 @@
-import Button from "./core/components/Button";
-import Input from "./core/components/Input";
-import Select from "./core/components/Select";
+import RoomCard from "./features/rooms/components/RoomCard";
 
 export default function App() {
   return (
-    <div>
-      <h1 className="text-3xl">Hello World!</h1>
-      <Button>Button</Button>
-      <Input placeholder="Input Element"/>
-      <Select>
-        <option>Option 1</option>
-        <option>Option 2</option>
-      </Select>
+    <div className="text-blue-dark">
+      <h1 className="text-3xl font-bold">Salas</h1>
+      <RoomCard />
     </div>
   );
 }
