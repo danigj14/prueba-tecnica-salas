@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateRoom } from "../api";
 import { Room } from "../types";
 
-export function useUpdateRoomMutation(id: number) {
+export function useUpdateRoomMutation(id: Room["id"]) {
   const queryClient = useQueryClient();
   return useMutation<Room, unknown, Omit<Room, "id">>({
     mutationFn: (data) => updateRoom(id, data),

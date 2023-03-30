@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useCreateRoomMutation } from "../hooks";
 import { useFloorRooms } from "../hooks/useFloorRooms";
+import { Room } from "../types";
 import { RoomCard } from "./RoomCard";
 import { RoomForm } from "./RoomForm";
 
 interface FloorPanelProps {
-  floor: number;
+  floor: Room["floor"];
 }
 
 export function FloorPanel({ floor }: FloorPanelProps) {
