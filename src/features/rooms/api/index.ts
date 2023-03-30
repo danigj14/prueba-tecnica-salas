@@ -1,1 +1,2 @@
-export * from "./getFloorRooms"
+export * from "./getFloorRooms";
+export * from "./updateRoom";

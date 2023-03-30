@@ -1,24 +1,75 @@
-import { Button, Input } from "@/core/components";
+import { Button, Input, Modal } from "@/core/components";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { useRoomUpdateMutation } from "../hooks/useRoomUpdateMutation";
 import { Room } from "../types";
+import { RoomForm } from "./RoomForm";
 
-type RoomCardProps = Pick<Room, "name" | "maximumCapacity" | "occupancyPercent">
+interface RoomCardProps {
+  room: Room;
+}
 
-export function RoomCard({name, maximumCapacity, occupancyPercent}: RoomCardProps) {
+export function RoomCard({ room }: RoomCardProps) {
+  const [isEditing, setIsEditing] = useState(false);
+
+  const { mutate, isLoading } = useRoomUpdateMutation(room.id);
+
   return (
-    <div className="p-4 flex flex-col bg-blue-light rounded-[26px]">
-      <h1 className="text-xl font-bold">{name}</h1>
-      <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
-      <Input type="number" value={maximumCapacity} className="[appearance:textfield]" />
-      <label className="mt-4 py-1 font-bold">Ocupación</label>
-      <div className="flex relative">
+    <>
+      <div className="p-4 flex flex-col bg-blue-light rounded-[26px]">
+        <h1 className="text-xl font-bold">{room.name}</h1>
+        <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
         <Input
           type="number"
-          value={occupancyPercent}
-          className="[appearance:textfield] w-full pr-8"
+          value={room.maximumCapacity}
+          disabled
+          className="[appearance:textfield] bg-white"
         />
-        <span className="absolute top-1/2 -translate-y-1/2 right-4">%</span>
+        <label className="mt-4 py-1 font-bold">Ocupación</label>
+        <div className="flex relative">
+          <Input
+            type="number"
+            value={room.occupancyPercent}
+            disabled
+            className="[appearance:textfield] w-full pr-8 bg-white"
+          />
+          <span className="absolute top-1/2 -translate-y-1/2 right-4 pointer-events-none">
+            %
+          </span>
+        </div>
+        <Button
+          className="mt-5 self-end"
+          onClick={() => setIsEditing(!isEditing)}
+        >
+          Modificar
+        </Button>
       </div>
-      <Button className="mt-5 self-end">Modificar</Button>
-    </div>
+      {isEditing && (
+        <Modal>
+          {isLoading ? (
+            <div className="p-10 bg-white rounded-[24px] text-3xl">
+              <FontAwesomeIcon icon={faSpinner} spin />
+            </div>
+          ) : (
+            <RoomForm
+              headingText="Editar Sala"
+              initialValues={{
+                name: room.name,
+                maximumCapacity: room.maximumCapacity,
+                occupancyPercent: room.occupancyPercent,
+              }}
+              onSave={(data) =>
+                mutate(
+                  { ...room, ...data },
+                  { onSettled: () => setIsEditing(false) }
+                )
+              }
+              onCancel={() => setIsEditing(false)}
+            />
+          )}
+        </Modal>
+      )}
+    </>
   );
 }

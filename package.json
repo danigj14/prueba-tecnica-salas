@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "mockapi": "json-server --watch db.json"
+    "mockapi": "json-server --watch db.json --delay 250"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

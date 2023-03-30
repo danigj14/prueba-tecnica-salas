@@ -28,12 +28,7 @@ export function FloorPanel({ floor }: FloorPanelProps) {
           </div>
           <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {data.map((room) => (
-              <RoomCard
-                key={room.id}
-                name={room.name}
-                maximumCapacity={room.maximumCapacity}
-                occupancyPercent={room.occupancyPercent}
-              />
+              <RoomCard key={room.id} room={room} />
             ))}
           </div>
         </>

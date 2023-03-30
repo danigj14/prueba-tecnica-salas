@@ -20,7 +20,7 @@ export default function App() {
         <option value="4">Planta 4</option>
       </Select>
       <div className="pt-5 border-t-2 border-blue-light"></div>
-      <FloorPanel floor={selectedFloor}/>
+      <FloorPanel floor={selectedFloor} />
     </div>
   );
 }
