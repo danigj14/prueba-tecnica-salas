@@ -2,7 +2,7 @@ import { Button, Input, Modal } from "@/core/components";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { useRoomUpdateMutation } from "../hooks/useRoomUpdateMutation";
+import { useUpdateRoomMutation } from "../hooks/useUpdateRoomMutation";
 import { Room } from "../types";
 import { RoomForm } from "./RoomForm";
 
@@ -13,7 +13,7 @@ interface RoomCardProps {
 export function RoomCard({ room }: RoomCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const { mutate, isLoading } = useRoomUpdateMutation(room.id);
+  const { mutate, isLoading } = useUpdateRoomMutation(room.id);
 
   return (
     <>
@@ -48,7 +48,7 @@ export function RoomCard({ room }: RoomCardProps) {
       {isEditing && (
         <Modal>
           {isLoading ? (
-            <div className="p-10 bg-white rounded-[24px] text-3xl">
+            <div className="p-32 bg-white rounded-[26px] text-3xl">
               <FontAwesomeIcon icon={faSpinner} spin />
             </div>
           ) : (
