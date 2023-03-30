@@ -1,5 +1,5 @@
 import { Button, Input, Modal } from "@/core/components";
-import { faSpinner, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import { useDeleteRoomMutation } from "../hooks";
@@ -34,18 +34,16 @@ export function RoomCard({ room }: RoomCardProps) {
         <h1 className="text-xl font-bold pr-7">{room.name}</h1>
         <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
         <Input
-          type="number"
           value={room.maximumCapacity}
           disabled
-          className="[appearance:textfield] bg-white"
+          className="bg-white"
         />
         <label className="mt-4 py-1 font-bold">Ocupación</label>
         <div className="flex relative">
           <Input
-            type="number"
             value={room.occupancyPercent}
             disabled
-            className="[appearance:textfield] w-full pr-8 bg-white"
+            className="w-full pr-8 bg-white"
           />
           <span className="absolute top-1/2 -translate-y-1/2 right-4 pointer-events-none">
             %

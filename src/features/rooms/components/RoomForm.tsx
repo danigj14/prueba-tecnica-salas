@@ -1,4 +1,5 @@
 import { Button, Input } from "@/core/components";
+import { isNumberInput } from "@/core/util/util";
 import { useState } from "react";
 import { Room } from "../types";
 
@@ -17,10 +18,10 @@ export function RoomForm({
 }: RoomFormProps) {
   const [name, setName] = useState(initialValues?.name || "");
   const [maximumCapacity, setMaximumCapacity] = useState(
-    initialValues?.maximumCapacity || 0
+    initialValues?.maximumCapacity.toString() || ""
   );
   const [occupancyPercent, setOccupancyPercent] = useState(
-    initialValues?.occupancyPercent || 0
+    initialValues?.occupancyPercent.toString() || ""
   );
 
   return (
@@ -30,21 +31,21 @@ export function RoomForm({
       <Input value={name} onChange={(event) => setName(event.target.value)} />
       <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
       <Input
-        type="number"
         value={maximumCapacity}
-        onChange={(event) =>
-          setMaximumCapacity(Number.parseInt(event.target.value))
-        }
+        onChange={(event) => {
+          if (isNumberInput(event.target.value))
+            setMaximumCapacity(event.target.value);
+        }}
         className="[appearance:textfield]"
       />
       <label className="mt-4 py-1 font-bold">Ocupación</label>
       <div className="flex relative">
         <Input
-          type="number"
           value={occupancyPercent}
-          onChange={(event) =>
-            setOccupancyPercent(Number.parseInt(event.target.value))
-          }
+          onChange={(event) => {
+            if (isNumberInput(event.target.value))
+              setOccupancyPercent(event.target.value);
+          }}
           className="[appearance:textfield] w-full pr-8 bg-white"
         />
         <span className="absolute top-1/2 -translate-y-1/2 right-4 pointer-events-none">
@@ -54,7 +55,13 @@ export function RoomForm({
       <div className="mt-8 flex justify-between">
         <Button onClick={onCancel}>Cancelar</Button>
         <Button
-          onClick={() => onSave({ name, maximumCapacity, occupancyPercent })}
+          onClick={() =>
+            onSave({
+              name,
+              maximumCapacity: Number.parseInt(maximumCapacity),
+              occupancyPercent: Number.parseInt(occupancyPercent),
+            })
+          }
         >
           Guardar
         </Button>
