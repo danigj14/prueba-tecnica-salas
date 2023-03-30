@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 
 type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement>;
 
-export default function Select({ className, ...props }: SelectProps) {
+export function Select({ className, ...props }: SelectProps) {
   const mergedStyle = twMerge(
     "relative inline-block bg-white border border-blue-dark rounded-[12px]",
     className

@@ -1,5 +1,5 @@
-import Select from "./core/components/Select";
-import FloorPanel from "./features/rooms/components/FloorPanel";
+import { Select } from "./core/components";
+import { FloorPanel } from "./features/rooms";
 
 export default function App() {
   return (

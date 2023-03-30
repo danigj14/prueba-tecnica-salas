@@ -1,7 +1,7 @@
-import Button from "@/core/components/Button";
-import RoomCard from "./RoomCard";
+import { Button } from "@/core/components";
+import { RoomCard } from "./RoomCard";
 
-export default function FloorPanel() {
+export function FloorPanel() {
   return (
     <div className="p-4 border border-blue-dark rounded-[26px]">
       <div className="flex justify-between items-center">

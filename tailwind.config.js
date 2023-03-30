@@ -12,7 +12,7 @@ export default {
       black: "#000000",
       "blue-dark": "#2E344D",
       "blue-light": "#F5F7FB",
-      transparent: "transparent"
+      transparent: "transparent",
     },
   },
   plugins: [],

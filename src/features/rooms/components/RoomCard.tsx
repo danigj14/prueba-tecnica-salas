@@ -1,7 +1,6 @@
-import Button from "@/core/components/Button";
-import Input from "@/core/components/Input";
+import { Button, Input } from "@/core/components";
 
-export default function RoomCard() {
+export function RoomCard() {
   return (
     <div className="p-4 flex flex-col bg-blue-light rounded-[26px]">
       <h1 className="text-xl font-bold">Sala planta 1</h1>
