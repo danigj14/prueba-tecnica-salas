@@ -4,6 +4,7 @@ import { Room } from "../types";
 
 export function useUpdateRoomMutation(id: Room["id"]) {
   const queryClient = useQueryClient();
+
   return useMutation<Room, unknown, Omit<Room, "id">>({
     mutationFn: (data) => updateRoom(id, data),
 

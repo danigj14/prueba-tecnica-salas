@@ -1,7 +1,8 @@
 import { Button, Input, Modal } from "@/core/components";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTrash, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
+import { useDeleteRoomMutation } from "../hooks";
 import { useUpdateRoomMutation } from "../hooks/useUpdateRoomMutation";
 import { Room } from "../types";
 import { RoomForm } from "./RoomForm";
@@ -13,12 +14,24 @@ interface RoomCardProps {
 export function RoomCard({ room }: RoomCardProps) {
   const [isEditing, setIsEditing] = useState(false);
 
-  const { mutate, isLoading } = useUpdateRoomMutation(room.id);
+  const { mutate: updateRoom, isLoading: updateIsLoading } =
+    useUpdateRoomMutation(room.id);
+  const { mutate: deleteRoom, isLoading: deleteIsLoading } =
+    useDeleteRoomMutation();
 
   return (
     <>
-      <div className="p-4 flex flex-col bg-blue-light rounded-[26px]">
-        <h1 className="text-xl font-bold">{room.name}</h1>
+      <div className="p-4 flex flex-col bg-blue-light rounded-[26px] relative">
+        <Button
+          className="absolute top-3 right-3 h-6 w-6 p-0 flex justify-center items-center"
+          onClick={() => deleteRoom(room.id)}
+        >
+          <FontAwesomeIcon
+            icon={deleteIsLoading ? faSpinner : faXmark}
+            spin={deleteIsLoading}
+          />
+        </Button>
+        <h1 className="text-xl font-bold pr-7">{room.name}</h1>
         <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
         <Input
           type="number"
@@ -47,7 +60,7 @@ export function RoomCard({ room }: RoomCardProps) {
       </div>
       {isEditing && (
         <Modal>
-          {isLoading ? (
+          {updateIsLoading ? (
             <div className="p-32 bg-white rounded-[26px] text-3xl">
               <FontAwesomeIcon icon={faSpinner} spin />
             </div>
@@ -60,7 +73,7 @@ export function RoomCard({ room }: RoomCardProps) {
                 occupancyPercent: room.occupancyPercent,
               }}
               onSave={(data) =>
-                mutate(
+                updateRoom(
                   { ...room, ...data },
                   { onSettled: () => setIsEditing(false) }
                 )
