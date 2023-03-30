@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mockapi": "json-server --watch db.json"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -27,6 +28,7 @@
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
+    "json-server": "^0.17.3",
     "postcss": "^8.4.21",
     "prettier": "2.8.7",
     "tailwindcss": "^3.3.0",
