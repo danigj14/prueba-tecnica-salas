@@ -6,14 +6,14 @@ type SelectProps = React.SelectHTMLAttributes<HTMLSelectElement>;
 
 export function Select({ className, ...props }: SelectProps) {
   const mergedStyle = twMerge(
-    "relative inline-block bg-white border border-blue-dark rounded-[12px]",
+    "relative inline-block bg-white border border-blue-dark rounded-[12px] hover:text-blue-dark-hover transition-all",
     className
   );
 
   return (
     <div className={mergedStyle}>
       <select
-        className="p-2 pl-4 pr-12 bg-transparent appearance-none"
+        className="p-2 pl-4 pr-12 bg-transparent appearance-none cursor-pointer"
         {...props}
       />
       <FontAwesomeIcon

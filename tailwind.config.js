@@ -11,6 +11,7 @@ export default {
       white: "#FFFFFF",
       black: "#000000",
       "blue-dark": "#2E344D",
+      "blue-dark-hover": "#434c70",
       "blue-light": "#F5F7FB",
       transparent: "transparent",
     },

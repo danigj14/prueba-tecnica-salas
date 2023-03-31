@@ -29,7 +29,7 @@ export function FloorPanel({ floor }: FloorPanelProps) {
   const { mutate, isLoading: creationLoading } = useCreateRoomMutation();
 
   return (
-    <section className="p-4 border border-blue-dark rounded-[26px]">
+    <section className="p-4 px-8 border border-blue-dark rounded-[26px]">
       {roomsLoading && (
         <FontAwesomeIcon
           className="block mx-auto py-10 text-3xl"
