@@ -1,5 +1,5 @@
 import { Input } from "@/core/components";
-import { isNumberInput } from "@/core/util/util";
+import { isNumberInput, isValidPercentInput } from "@/core/util/util";
 import { useState } from "react";
 import { Room } from "../types";
 import { FilterType, FilterTypeSelect } from "./FilterTypeSelect";
@@ -104,7 +104,7 @@ export function FilterControls({ onFilterChange }: FilterControlsProps) {
         <Input
           value={filterSettings.occupancyPercent}
           onChange={(event) => {
-            if (isNumberInput(event.target.value)) {
+            if (isValidPercentInput(event.target.value)) {
               changeFilterSettings({
                 ...filterSettings,
                 occupancyPercent: event.target.value,

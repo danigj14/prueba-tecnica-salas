@@ -1,5 +1,5 @@
 import { Button, Input } from "@/core/components";
-import { isNumberInput } from "@/core/util/util";
+import { isNumberInput, isValidPercentInput } from "@/core/util/util";
 import { useState } from "react";
 import { Room } from "../types";
 
@@ -43,7 +43,7 @@ export function RoomForm({
         <Input
           value={occupancyPercent}
           onChange={(event) => {
-            if (isNumberInput(event.target.value))
+            if (isValidPercentInput(event.target.value))
               setOccupancyPercent(event.target.value);
           }}
           className="[appearance:textfield] w-full pr-8 bg-white"
