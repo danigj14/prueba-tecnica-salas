@@ -24,13 +24,35 @@ export function RoomForm({
     initialValues?.occupancyPercent.toString() || ""
   );
 
+  const onSubmit = (event: React.SyntheticEvent) => {
+    event.preventDefault();
+
+    onSave({
+      name,
+      maximumCapacity: Number.parseInt(maximumCapacity),
+      occupancyPercent: Number.parseInt(occupancyPercent),
+    });
+  };
+
   return (
-    <div className="p-8 bg-white flex flex-col rounded-[26px]">
+    <form
+      onSubmit={onSubmit}
+      className="p-8 bg-white flex flex-col rounded-[26px]"
+    >
       <h1 className="text-xl font-bold">{headingText}</h1>
-      <label className="mt-4 py-1 font-bold">Nombre</label>
-      <Input value={name} onChange={(event) => setName(event.target.value)} />
-      <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
+      <label htmlFor="name" className="mt-4 py-1 font-bold">
+        Nombre
+      </label>
       <Input
+        id="name"
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+      />
+      <label htmlFor="maximum-capacity" className="mt-4 py-1 font-bold">
+        Capacidad máxima
+      </label>
+      <Input
+        id="maximum-capacity"
         value={maximumCapacity}
         onChange={(event) => {
           if (isNumberInput(event.target.value))
@@ -38,9 +60,12 @@ export function RoomForm({
         }}
         className="[appearance:textfield]"
       />
-      <label className="mt-4 py-1 font-bold">Ocupación</label>
+      <label htmlFor="occupancy-percent" className="mt-4 py-1 font-bold">
+        Ocupación
+      </label>
       <div className="flex relative">
         <Input
+          id="occupancy-percent"
           value={occupancyPercent}
           onChange={(event) => {
             if (isValidPercentInput(event.target.value))
@@ -54,18 +79,8 @@ export function RoomForm({
       </div>
       <div className="mt-8 flex justify-between">
         <Button onClick={onCancel}>Cancelar</Button>
-        <Button
-          onClick={() =>
-            onSave({
-              name,
-              maximumCapacity: Number.parseInt(maximumCapacity),
-              occupancyPercent: Number.parseInt(occupancyPercent),
-            })
-          }
-        >
-          Guardar
-        </Button>
+        <Button type="submit">Guardar</Button>
       </div>
-    </div>
+    </form>
   );
 }
