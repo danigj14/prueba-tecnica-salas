@@ -6,7 +6,7 @@ export default function App() {
   const [selectedFloor, setSelectedFloor] = useState(1);
 
   return (
-    <div className="text-blue-dark container xl:max-w-screen-xl mx-auto p-4">
+    <main className="text-blue-dark container xl:max-w-screen-xl mx-auto p-4">
       <h1 className="mb-5 text-3xl font-bold">Salas</h1>
       <Select
         className="mb-5"
@@ -21,6 +21,6 @@ export default function App() {
       </Select>
       <div className="pt-5 border-t-2 border-blue-light"></div>
       <FloorPanel floor={selectedFloor} />
-    </div>
+    </main>
   );
 }
