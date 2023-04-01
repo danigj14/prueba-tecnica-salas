@@ -32,15 +32,15 @@ export function RoomCard({ room }: RoomCardProps) {
           />
         </Button>
         <h1 className="text-xl font-bold pr-7">{room.name}</h1>
-        <label className="mt-4 py-1 font-bold">Capacidad máxima</label>
-        <Input value={room.maximumCapacity} disabled className="bg-white" />
-        <label className="mt-4 py-1 font-bold">Ocupación</label>
+        <h2 className="mt-4 py-1 font-bold">Capacidad máxima</h2>
+        <p className="p-2 px-4 border border-blue-dark rounded-[12px] bg-white w-full">
+          {room.maximumCapacity}
+        </p>
+        <h2 className="mt-4 py-1 font-bold">Ocupación</h2>
         <div className="flex relative">
-          <Input
-            value={room.occupancyPercent}
-            disabled
-            className="w-full pr-8 bg-white"
-          />
+          <p className="p-2 px-4 border border-blue-dark rounded-[12px] bg-white w-full">
+            {room.occupancyPercent}
+          </p>
           <span className="absolute top-1/2 -translate-y-1/2 right-4 pointer-events-none">
             %
           </span>
