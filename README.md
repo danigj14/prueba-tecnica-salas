@@ -12,6 +12,12 @@ npm run jsonserver
 
 Este comando ejecutará el servidor en el puerto 3000 por defecto. También aplicará un network delay simulado de 250ms para simular los tiempos de carga e intercambio de datos entre la aplicación y el servidor. Ambas opciones se pueden modificar en el archivo package.json.
 
+En caso de modificar el puerto en el cual se ejecuta json-server, también sera necesario modificar la config VITE_API_URL del archivo .env para que apunte al nuevo puerto:
+
+```
+VITE_API_URL=http://localhost:3000
+```
+
 Una vez este servidor está funcionando y aceptando peticiones, podemos arrancar la aplicación principal en modo development y visitar la URL que aparecerá en pantalla:
 
 ```

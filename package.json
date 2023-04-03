@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "jsonserver": "json-server --watch db.json --delay 250",
+    "jsonserver": "json-server --watch db.json -p 3000 --delay 250",
     "test": "vitest"
   },
   "dependencies": {
