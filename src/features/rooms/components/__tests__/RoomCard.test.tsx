@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@/core/test/test-utils";
-import { describe, expect, it } from "vitest";
+import { describe, it } from "vitest";
 import { Room } from "../../types";
 import { RoomCard } from "../RoomCard";
 
