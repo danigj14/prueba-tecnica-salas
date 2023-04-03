@@ -1,4 +1,4 @@
-import { Button, Input, Modal } from "@/core/components";
+import { Button, Modal } from "@/core/components";
 import { faSpinner, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
